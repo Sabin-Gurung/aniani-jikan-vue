@@ -3,13 +3,18 @@
         <div class="header row">
             AniANI-Jikan
         </div>
+        <search-bar/>
   </div>
 </template>
 <script>
+import SearchBar from "./SearchBar.vue";
 export default {
-    date(){
+    data(){
         return {
         };
+    },
+    components : {
+        searchBar : SearchBar
     }
 }
 </script>
@@ -23,5 +28,4 @@ export default {
     font-size: 50px;
     margin-bottom: 10px;
 }
-
 </style>
