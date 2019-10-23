@@ -1,9 +1,10 @@
 <template>
-  <div>
-      <h1>You are in the Home page</h1>
+  <div class="container">
+        <div class="header row">
+            AniANI-Jikan
+        </div>
   </div>
 </template>
-
 <script>
 export default {
     date(){
@@ -14,5 +15,13 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+.header{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Acme', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
 
 </style>
