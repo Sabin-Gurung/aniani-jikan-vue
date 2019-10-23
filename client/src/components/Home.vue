@@ -8,6 +8,8 @@
 </template>
 <script>
 import SearchBar from "./SearchBar.vue";
+import axios from "axios"
+
 export default {
     data(){
         return {
@@ -18,8 +20,16 @@ export default {
     },
     methods : {
         onSearch(obj){
-            window.console.log(obj);
-            alert("search event of child detected");
+            if (obj.year == "" || obj.season == ""){
+                alert("invalid input");
+                return;
+            }
+
+            axios.get(`https://api.jikan.moe/v3/season/${obj.year}/${obj.season}`)
+                .then(res => res.data)
+                .then(res => {
+                    window.console.log(res);
+                });
         }
     }
 }
