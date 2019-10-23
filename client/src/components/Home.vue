@@ -3,7 +3,7 @@
         <div class="header row">
             AniANI-Jikan
         </div>
-        <search-bar/>
+        <search-bar @search="onSearch"/>
   </div>
 </template>
 <script>
@@ -15,6 +15,12 @@ export default {
     },
     components : {
         searchBar : SearchBar
+    },
+    methods : {
+        onSearch(obj){
+            window.console.log(obj);
+            alert("search event of child detected");
+        }
     }
 }
 </script>
