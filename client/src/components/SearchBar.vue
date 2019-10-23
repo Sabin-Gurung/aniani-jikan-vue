@@ -5,7 +5,7 @@
             <span class="input-group-text">Year</span>
         </div>
         <select class="form-control" v-model="year">
-            <option value="1990">1990</option>
+            <option v-for="yr in yearList" :key="yr" :value="yr">{{yr}}</option>
         </select>
     </div>
     <div class="input-group col-md-3">
@@ -30,15 +30,23 @@ export default {
     data(){
         return {
             season : "",
-            year : ""
+            year : "",
+            yearList : []
         }
     },
     methods : {
         onClickSearchButton (){
             this.$emit('search', {year: this.year, season: this.season});
         }
+    },
+    created(){
+        let currentYear = new Date().getFullYear();
+        var years = [];
+        for (var i = currentYear; i >= 1950; --i) {
+            years.push(i);
+        }
+        this.yearList = years;
     }
-
 }
 </script>
 
