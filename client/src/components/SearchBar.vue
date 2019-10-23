@@ -1,5 +1,5 @@
 <template>
-<div className="row seasonSearchSection">
+<div class="row seasonSearchSection">
     <div class="input-group col-md-3">
         <div class="input-group-prepend">
             <span class="input-group-text">Year</span>
@@ -18,8 +18,8 @@
             <option value="spring">spring</option>
         </select>
     </div>
-    <div className="go-btn col-md-3">
-        <button className="btn btn-success">Search</button>
+    <div class="go-btn col-md-3">
+        <button class="btn btn-success">Search</button>
     </div>
 </div>
 </template>
