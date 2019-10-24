@@ -94,8 +94,6 @@ export default {
     }
   },
   created(){
-  },
-  mounted(){
     this.loadInfo();
   }
 }
