@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start" : "node server.js",
-    "heroku-postbuild" : "npm rum build"
+    "heroku-postbuild" : "cd client && npm rum build"
   },
   "author": "",
   "license": "ISC",
