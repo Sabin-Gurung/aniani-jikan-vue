@@ -29,7 +29,7 @@
 export default {
     data(){
         return {
-            season : "",
+            season : "summer",
             year : "",
             yearList : []
         }
@@ -46,6 +46,7 @@ export default {
             years.push(i);
         }
         this.yearList = years;
+        this.year = years[0];
     }
 }
 </script>

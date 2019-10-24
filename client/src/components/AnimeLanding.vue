@@ -94,9 +94,9 @@ export default {
     }
   },
   created(){
-    this.loadInfo();
   },
   mounted(){
+    this.loadInfo();
   }
 }
 </script>
