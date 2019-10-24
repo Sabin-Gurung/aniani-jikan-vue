@@ -16,7 +16,6 @@ export default {
     props : ['anime'],
     methods:{
         onClick(){
-            window.console.log(this.$router);
             this.$router.push({path : `/anime/${this.$props.anime.mal_id}`})
         }
     }

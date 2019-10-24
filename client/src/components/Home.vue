@@ -34,7 +34,6 @@ export default {
             axios.get(`https://api.jikan.moe/v3/season/${obj.year}/${obj.season}`)
                 .then(res => res.data)
                 .then(res => {
-                    window.console.log(res);
                     this.animes = res.anime;
                 });
         }
