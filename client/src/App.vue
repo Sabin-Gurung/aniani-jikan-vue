@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
       <div class="header row">
-          AniANI-Jikan
+          AniANI-Jikan - Vue
       </div>
       <keep-alive>
         <router-view></router-view>
