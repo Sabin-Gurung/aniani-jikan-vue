@@ -6,7 +6,6 @@
               <img :src="anime.image_url"/>
           </div>
           <div class="col-md-8">
-              <button class="btn btn-success">Back</button>
               <h3>{{anime.title}}</h3>
               <p>
                   {{anime.synopsis}}
@@ -79,7 +78,6 @@ export default {
   data(){
     return {
       id: this.$route.params.id,
-      // animeLoaded : false,
       anime : null
     }
   },
