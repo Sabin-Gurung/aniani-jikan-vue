@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="anime-landing">
     <div v-if="anime != null">
       <div class="col-md-12 row">
           <div class="col-md-4">
@@ -77,16 +77,14 @@ export default {
   },
   data(){
     return {
-      id: this.$route.params.id,
       anime : null
     }
   },
   methods:{
-    loadInfo(){
-      axios.get(`https://api.jikan.moe/v3/anime/${this.id}`)
+    loadAnimeInfo(id){
+      axios.get(`https://api.jikan.moe/v3/anime/${id}`)
           .then(res => res.data)
           .then(res => {
-            window.console.log(res);
             this.anime = res;
             this.anime.genres = this.anime.genres.map(genre => genre.name).join(", ");
             this.anime.producers = this.anime.producers.map(producer => producer.name).join(", ");
@@ -94,7 +92,7 @@ export default {
     }
   },
   created(){
-    this.loadInfo();
+    this.loadAnimeInfo(this.$route.params.id);
   }
 }
 </script>

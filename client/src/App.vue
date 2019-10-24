@@ -3,7 +3,9 @@
       <div class="header row">
           AniANI-Jikan - Vue
       </div>
-        <router-view></router-view>
+      <keep-alive>
+        <router-view :key="$route.path"></router-view>
+      </keep-alive>
   </div>
 </template>
 
