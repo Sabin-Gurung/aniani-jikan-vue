@@ -115,7 +115,7 @@ sketch
 ### Vuejs ###
 # Recommended template: Node.gitignore
 
-dist/
+# dist/
 npm-debug.log
 yarn-error.log
 
