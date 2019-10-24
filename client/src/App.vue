@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
+      <div class="header row">
+          AniANI-Jikan
+      </div>
   <router-view></router-view>
   </div>
 </template>
@@ -11,4 +14,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+.header{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Acme', sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+</style>

@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-        <div class="header row">
-            AniANI-Jikan
-        </div>
         <search-bar @search="onSearch"/>
         <div class="anime-results row">
             <anime-mini v-for="anime in animes" :key="anime.mal_id" :anime="anime"/>
@@ -42,12 +39,4 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
-.header{
-    padding-left: 10px;
-    padding-right: 10px;
-    font-family: 'Acme', sans-serif;
-    font-size: 50px;
-    margin-bottom: 10px;
-}
 </style>
