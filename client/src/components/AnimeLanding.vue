@@ -82,16 +82,21 @@ export default {
     }
   },
   methods:{
+    loadInfo(){
+      axios.get(`https://api.jikan.moe/v3/anime/${this.id}`)
+          .then(res => res.data)
+          .then(res => {
+            window.console.log(res);
+            this.anime = res;
+            this.anime.genres = this.anime.genres.map(genre => genre.name).join(", ");
+            this.anime.producers = this.anime.producers.map(producer => producer.name).join(", ");
+          });
+    }
+  },
+  created(){
+    this.loadInfo();
   },
   mounted(){
-    axios.get(`https://api.jikan.moe/v3/anime/${this.id}`)
-        .then(res => res.data)
-        .then(res => {
-          window.console.log(res);
-          this.anime = res;
-          this.anime.genres = this.anime.genres.map(genre => genre.name).join(", ");
-          this.anime.producers = this.anime.producers.map(producer => producer.name).join(", ");
-        });
   }
 }
 </script>

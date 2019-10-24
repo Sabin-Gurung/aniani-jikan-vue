@@ -3,9 +3,7 @@
       <div class="header row">
           AniANI-Jikan - Vue
       </div>
-      <keep-alive>
         <router-view></router-view>
-      </keep-alive>
   </div>
 </template>
 
