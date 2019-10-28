@@ -8,7 +8,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link to="/discover" class="nav-link">Discover</router-link>
       </li>
       <li class="nav-item">
@@ -24,7 +24,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
+      </li> -->
     </ul>
     <div class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" v-model="queryText" type="search" placeholder="Search" aria-label="Search">
