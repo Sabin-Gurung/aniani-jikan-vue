@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="container-wrapper">
+    <nav-bar/>
       <keep-alive>
         <router-view :key="$route.path"></router-view>
       </keep-alive>
@@ -7,8 +8,12 @@
 </template>
 
 <script>
+import NavBar from "./components/NavBar";
 export default {
-  name: 'app'
+  name: 'app',
+  components : {
+    navBar : NavBar
+  }
 }
 </script>
 

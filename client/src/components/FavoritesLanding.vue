@@ -1,4 +1,7 @@
 <template>
+<div>
+    this is favorites landing page
+</div>
   
 </template>
 

@@ -1,5 +1,8 @@
 
 <template>
+<div>
+    this is search results landing page hello tehre
+</div>
   
 </template>
 

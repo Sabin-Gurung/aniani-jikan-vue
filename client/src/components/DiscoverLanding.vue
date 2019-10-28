@@ -1,4 +1,7 @@
 <template>
+<div>
+    this is discover landing apge
+</div>
   
 </template>
 

@@ -6,6 +6,9 @@ Vue.use(VueRouter);
 import App from './App.vue'
 import AnimeLanding from './components/AnimeLanding.vue'
 import Home from './components/Home.vue'
+import DiscoverLanding from './components/DiscoverLanding.vue';
+import FavoritesLanding from './components/FavoritesLanding.vue';
+import SearchResultsLanding from './components/SearchResultsLanding.vue';
 
 const routes = [
   {
@@ -15,6 +18,18 @@ const routes = [
   {
     path: '/home',
     component: Home
+  },
+  {
+    path: '/discover',
+    component: DiscoverLanding
+  },
+  {
+    path: '/search',
+    component: SearchResultsLanding
+  },
+  {
+    path: '/favorites',
+    component: FavoritesLanding
   },
   {
     path: '/',
