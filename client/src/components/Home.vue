@@ -1,5 +1,6 @@
 <template>
   <div>
+        <nav-bar/>
         <search-bar @search="onSearch"/>
         <div class="anime-results row">
             <anime-mini v-for="anime in animes" :key="anime.mal_id" :anime="anime"/>
@@ -10,6 +11,7 @@
 import SearchBar from "./SearchBar.vue";
 import AnimeMini from "./AnimeMini"
 import axios from "axios"
+import NavBar from "./NavBar"
 
 export default {
     data(){
@@ -19,7 +21,8 @@ export default {
     },
     components : {
         searchBar : SearchBar,
-        animeMini : AnimeMini
+        animeMini : AnimeMini,
+        navBar : NavBar
     },
     methods : {
         onSearch(obj){
