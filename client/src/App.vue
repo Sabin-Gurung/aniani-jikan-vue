@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container-wrapper">
+  <div id="app" class="container">
     <nav-bar/>
       <keep-alive>
         <router-view :key="$route.path"></router-view>
@@ -22,5 +22,9 @@ export default {
 .container-wrapper{
   width:95%;
   margin: 0 auto;
+}
+
+.container{
+  background-color: darkslategrey;
 }
 </style>

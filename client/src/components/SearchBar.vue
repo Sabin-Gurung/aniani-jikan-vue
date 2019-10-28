@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style>
-.seasonSearchSection{
+.input-group, .go-btn{
     padding-top: 10px;
     padding-bottom: 10px;
 }

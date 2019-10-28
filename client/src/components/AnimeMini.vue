@@ -1,14 +1,14 @@
 
 <template>
-<div class="anime-mini-wrapper col-sm-4 col-md-3 col-lg-2">
-    <div class="anime-mini" @click="onClick">
-        <img :src="anime.image_url" alt="Card image cap"/>
-        <hr/>
-        <div>
-            <div>
-                <p>{{anime.title}}</p>
-                <p>{{anime.score}}</p>
-            </div>
+<div class="col-sm-12 col-lg-6">
+    <div class="anime-mini-wrapper d-flex">
+        <div class="image-section">
+            <img :src="anime.image_url" alt="Card image cap"/>
+        </div>
+        <div class="flex-grow-1 info-section">
+            <p>{{anime.title}}</p>
+            <p>{{anime.score}}</p>
+            <button class="btn btn-success btn-sm" @click="onClick">See More</button>
         </div>
     </div>
 </div>
@@ -24,25 +24,28 @@ export default {
     }
 }
 </script>
-
 <style>
 .anime-mini-wrapper{
-    padding-top: 4px;
-    margin: 0px;
+    background-color: linen;
+    margin-top: 10px;
+    min-height: 100px;
 }
 
-.anime-mini{
-    border: solid 1px gray;
+.image-section{
     padding: 4px;
-    border-radius: 10px;
-    /* padding-top: 10px; */
-    height: 100%;
 }
-.anime-mini img{
-    /* height: 220px; */
-    border-radius: 20px;
-    margin: 0px;
-    object-fit: contain;
-    width : 100%;
+
+.image-section > img {
+    object-fit: cover;
+    border-radius: 15px;
+    height: 200px;
+    width: 140px;
 }
+
+.info-section{
+    border-left: solid 2px grey;
+    padding: 5px;
+    margin: 5px;
+}
+
 </style>
