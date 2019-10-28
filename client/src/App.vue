@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="container-wrapper">
       <div class="header row">
           AniANI-Jikan - Vue
       </div>
@@ -24,5 +24,10 @@ export default {
     font-family: 'Acme', sans-serif;
     font-size: 50px;
     margin-bottom: 10px;
+}
+
+.container-wrapper{
+  width:95%;
+  margin: 0 auto;
 }
 </style>

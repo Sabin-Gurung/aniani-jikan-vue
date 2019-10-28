@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
         <search-bar @search="onSearch"/>
         <div class="anime-results row">
             <anime-mini v-for="anime in animes" :key="anime.mal_id" :anime="anime"/>
