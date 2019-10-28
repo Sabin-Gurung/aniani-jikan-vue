@@ -1,16 +1,22 @@
 <template>
   <div>
       <div class="row">
-        <div class="btn-group btn-group-toggle col-md-12" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> Discover
+        <div class="btn-group btn-group-toggle col-md-12">
+            <label class="btn btn-secondary" :class="picked == 'discover' ? 'active': ''">
+                <input type="radio" value="discover" checked v-model="picked"> Discover
             </label>
-            <label class="btn btn-secondary">
-                <input type="radio" name="options" id="option2" autocomplete="off"> Favorites
+            <label class="btn btn-secondary" :class="picked == 'favorites' ? 'active': ''">
+                <input type="radio" value="favorites" v-model="picked"> Favorites
             </label>
         </div>
       </div>
 
+      <div v-if="picked === 'discover'">
+          Discovery
+      </div>
+      <div v-else-if="picked === 'favorites'">
+          Favorites
+      </div>
 
         <search-bar @search="onSearch"/>
         <div class="anime-results row">
@@ -26,7 +32,8 @@ import axios from "axios"
 export default {
     data(){
         return {
-            animes : []
+            animes : [],
+            picked : "discover"
         };
     },
     components : {
@@ -35,6 +42,7 @@ export default {
     },
     methods : {
         onSearch(obj){
+            window.console.log(this.picked);
             if (obj.year == "" || obj.season == ""){
                 alert("invalid input");
                 return;
