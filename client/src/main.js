@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
+import store from "./stores/mainStore";
 import App from './App.vue'
 import AnimeLanding from './components/AnimeLanding.vue'
 import Home from './components/Home.vue'
@@ -31,5 +32,6 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')
