@@ -25,26 +25,26 @@
 export default {
     data(){
         return {
-            isFavorite : false
+            // isFavorite : false
         };
+    },
+    computed : {
+        isFavorite(){
+            return this.$store.getters.favorites.map(anime=>anime.mal_id).includes(this.anime.mal_id);
+        }
     },
     props : ['anime'],
     methods:{
         onClick(){
             this.$router.push({path : `/anime/${this.$props.anime.mal_id}`})
         },
-        toggleFavorite(){
-            this.isFavorite = !this.isFavorite;
-            window.console.log(this.anime);
-        },
         onClickFavorite(){
             if (!this.isFavorite){
-                window.console.log("adding to favorites");
+                this.$store.commit("addToFavorites", this.anime)
             } 
             else {
-                window.console.log("removingFromFavorite");
+                this.$store.commit("removeFromFavorites", this.anime.mal_id);
             }
-            this.toggleFavorite();
         }
     }
 }

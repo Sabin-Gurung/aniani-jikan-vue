@@ -10,7 +10,6 @@
 
 <script>
 import AnimeMini from "./AnimeMini";
-import axios from "axios";
 export default {
     data(){
         return {
@@ -20,23 +19,13 @@ export default {
         favorites(){
             return this.$store.getters.favorites;
         }
-
     },
     components:{
         animeMini: AnimeMini
     },
     methods : {
-        loadTopAnime(){
-            axios.get("https://api.jikan.moe/v3/top/anime/1")
-            .then(res=> res.data)
-            .then(res=>{
-                this.favorites = res.top;
-                this.$store.commit("addToFavorite", res.top[0]);
-            });
-        }
     },
     created(){
-        this.loadTopAnime();
     }
 }
 </script>
