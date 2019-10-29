@@ -11,14 +11,13 @@
         </div>
       </div>
 
-        <discover-landing v-if="picked === 'discover'"></discover-landing>
-      <div v-else-if="picked === 'favorites'">
-          Favorites
-      </div>
+      <discover-landing v-if="picked === 'discover'"></discover-landing>
+      <favorites-landing v-else-if="picked === 'favorites'"></favorites-landing>
   </div>
 </template>
 <script>
 import DiscoverLanding from "./DiscoverLanding";
+import FavoritesLanding from "./FavoritesLanding";
 export default {
     data(){
         return {
@@ -27,7 +26,8 @@ export default {
         };
     },
     components : {
-        discoverLanding : DiscoverLanding
+        discoverLanding : DiscoverLanding,
+        favoritesLanding : FavoritesLanding
     },
     methods : {
     }

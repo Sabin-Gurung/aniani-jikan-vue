@@ -1,8 +1,10 @@
 <template>
+<div>
+<h3>Discover the following animes</h3>
 <div class="row">
     <anime-mini v-for="anime in animes" :key="anime.mal_id" :anime="anime"/>
 </div>
-  
+</div>
 </template>
 
 <script>
