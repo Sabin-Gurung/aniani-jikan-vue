@@ -8,7 +8,14 @@
         <div class="flex-grow-1 info-section">
             <p>{{anime.title}}</p>
             <p>{{anime.score}}</p>
-            <button class="btn btn-success btn-sm" @click="onClick">See More</button>
+            <button class="btn btn-success btn-sm" @click="onClick">See More</button><br/>
+            <div v-if="isFavorite" @click="onClickFavorite">
+                Favorite
+            </div>
+            <div v-else @click="onClickFavorite">
+                Not Favorite
+            </div>
+
         </div>
     </div>
 </div>
@@ -16,10 +23,28 @@
 
 <script>
 export default {
+    data(){
+        return {
+            isFavorite : false
+        };
+    },
     props : ['anime'],
     methods:{
         onClick(){
             this.$router.push({path : `/anime/${this.$props.anime.mal_id}`})
+        },
+        toggleFavorite(){
+            this.isFavorite = !this.isFavorite;
+            window.console.log(this.anime);
+        },
+        onClickFavorite(){
+            if (!this.isFavorite){
+                window.console.log("adding to favorites");
+            } 
+            else {
+                window.console.log("removingFromFavorite");
+            }
+            this.toggleFavorite();
         }
     }
 }
