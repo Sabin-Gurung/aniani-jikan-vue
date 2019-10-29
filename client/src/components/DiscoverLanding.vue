@@ -20,7 +20,6 @@ export default {
         animeMini : AnimeMini
     },
     created(){
-        window.console.log("animelanding called");
         axios.get(`https://api.jikan.moe/v3/top/anime`)
             .then(res => res.data)
             .then(res => {

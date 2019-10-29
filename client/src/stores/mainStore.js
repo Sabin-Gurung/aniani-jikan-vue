@@ -13,8 +13,9 @@ const store = new Vuex.Store({
         }
     },
     mutations : {
-        addToFavorite(state, animeDate){
-            state.favorites.push(animeDate);
+        addToFavorite(state, animeData){
+            state.favorites.push(animeData);
+            window.console.log("pusing");
         }
     }
 });

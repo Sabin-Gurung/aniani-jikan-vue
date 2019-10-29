@@ -14,8 +14,13 @@ import axios from "axios";
 export default {
     data(){
         return {
-            favorites : []
         };
+    },
+    computed : {
+        favorites(){
+            return this.$store.getters.favorites;
+        }
+
     },
     components:{
         animeMini: AnimeMini
@@ -26,6 +31,7 @@ export default {
             .then(res=> res.data)
             .then(res=>{
                 this.favorites = res.top;
+                this.$store.commit("addToFavorite", res.top[0]);
             });
         }
     },
