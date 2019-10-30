@@ -15,7 +15,7 @@ app.use("/api", require("./backend/src/handler"));
 
 app.get('*', (req, res)=>{
     res.sendfile(path.join(__dirname, 'client/dist/index.html'));
-})
+});
 
-const port = process.env.PORT || 3000
-app.listen(port)
+const port = process.env.PORT || 3000;
+app.listen(port);
