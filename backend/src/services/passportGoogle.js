@@ -9,23 +9,17 @@ function init(passport) {
                 callbackURL: "/api/auth/google/callback",
             },
             (accessToken, refreshToken, profile, done) => {
-                console.log(accessToken);
-                done(null, profile);
-                // if (userslist.includes(profile.id))
-                //     done(null, profile.id)
-                // userslist.push(profile.id);
-                // done(null, profile.id);
+                done(null, { id : profile.id});
             })
     );
 
-    // passport.serializeUser((user, done) => {
-    //     done(null, user.id)
-    // });
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
+    });
 
-    // passport.deserializeUser((user, done) => {
-    //     done(null, { id: user, name: "custome amn" })
-    // });
-
+    passport.deserializeUser((userid, done) => {
+        done(null, { id: userid, name: "custome amn" })
+    });
 }
 
 module.exports.init = init;
