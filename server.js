@@ -22,7 +22,7 @@ app.use(expSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
-require("./backend/src/passportGoogle").init(passport);
+require("./backend/src/googleAuth").init(passport);
 
 app.use("/api", require("./backend/src/handler"));
 
