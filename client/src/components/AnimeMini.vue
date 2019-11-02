@@ -11,10 +11,10 @@
             <button class="btn btn-success btn-sm" @click="onClick">See More</button><br/>
             <div v-if="$store.getters.isLoggedIn">
                 <div v-if="isFavorite" @click="onClickFavorite">
-                    Favorite
+                    <i class="fas fa-heart"></i>
                 </div>
                 <div v-else @click="onClickFavorite">
-                    Not Favorite
+                    <i class="far fa-heart"></i>
                 </div>
             </div>
         </div>
