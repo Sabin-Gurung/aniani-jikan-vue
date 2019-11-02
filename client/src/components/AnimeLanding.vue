@@ -1,12 +1,20 @@
 <template>
-  <div class="anime-landing">
+  <div class="anime-landing mt-3">
     <div v-if="anime != null">
       <div class="col-md-12 row">
           <div class="col-md-4">
               <img :src="anime.image_url"/>
           </div>
           <div class="col-md-8">
-              <h3>{{anime.title}}</h3>
+              <h3>{{anime.title}}
+              <span v-if="$store.getters.isLoggedIn">
+                  <span v-if="isFavorite" @click="onClickFavorite">
+                      <i class="fas fa-heart"></i>
+                  </span>
+                  <span v-else @click="onClickFavorite">
+                      <i class="far fa-heart"></i>
+                  </span>
+              </span></h3>
               <p>
                   {{anime.synopsis}}
               </p>
@@ -80,6 +88,11 @@ export default {
       anime : null
     }
   },
+  computed : {
+      isFavorite(){
+          return this.$store.getters.favorites.map(anime=>anime.mal_id).includes(this.anime.mal_id);
+      }
+  },
   methods:{
     loadAnimeInfo(id){
       axios.get(`https://api.jikan.moe/v3/anime/${id}`)
@@ -89,6 +102,14 @@ export default {
             this.anime.genres = this.anime.genres.map(genre => genre.name).join(", ");
             this.anime.producers = this.anime.producers.map(producer => producer.name).join(", ");
           });
+    },
+    onClickFavorite(){
+        if (!this.isFavorite){
+            this.$store.commit("addToFavorites", this.anime)
+        } 
+        else {
+            this.$store.commit("removeFromFavorites", this.anime.mal_id);
+        }
     }
   },
   created(){
@@ -98,4 +119,5 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+</style>
