@@ -11,7 +11,6 @@ dotenv.config();
 const app = express();
 
 app.use(morgan("short"));
-app.use(express.static(path.join(__dirname, 'client/dist')));
 app.use(express.urlencoded({extended:false}));
 app.use(cookie());
 app.use(expSession({
@@ -26,11 +25,14 @@ require("./backend/src/googleAuth").init(passport);
 
 app.use("/api", require("./backend/src/handler"));
 
-app.get('*', (req, res)=>{
-    res.sendfile(path.join(__dirname, 'client/dist/index.html'));
-});
+if (process.env.ENV == "PROD"){
+    app.use(express.static(path.join(__dirname, 'client/dist')));
+    app.get('*', (req, res)=>{
+        res.sendfile(path.join(__dirname, 'client/dist/index.html'));
+    });
+}
 
 const port = process.env.PORT || 3500;
 app.listen(port, ()=>{
-    console.log(`App started on port http://localhost:${port}`);
+    console.log(`${process.env.ENV} app started on port http://localhost:${port}`);
 });

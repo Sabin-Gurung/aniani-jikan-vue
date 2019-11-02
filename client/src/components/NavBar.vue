@@ -53,12 +53,6 @@ export default {
             window.console.log(this.queryText);
             this.searchAnime(this.queryText);
             this.queryText = "";
-        },
-        onClickLogIn(){
-          this.$store.state.user = 1;
-        },
-        onClickLogOut(){
-          this.$store.state.user = null;
         }
     }
 }

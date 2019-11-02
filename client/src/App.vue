@@ -9,12 +9,23 @@
 
 <script>
 import NavBar from "./components/NavBar";
+import axios from "axios";
 export default {
   name: 'app',
   components : {
     navBar : NavBar
   },
   created(){
+    axios.get("/api/auth/current_user")
+    .then(res => res.data)
+    .then(res => {
+      if (res.id != -1){
+        this.$store.commit("setUser", res);
+      }
+    })
+    .catch(err=>{
+      window.console.log(err);
+    });
   }
 }
 </script>

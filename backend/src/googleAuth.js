@@ -18,7 +18,7 @@ function init(passport) {
     });
 
     passport.deserializeUser((userid, done) => {
-        done(null, { id: userid, name: "custome amn" })
+        done(null, { id: userid})
     });
 }
 

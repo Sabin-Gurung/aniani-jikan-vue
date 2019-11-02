@@ -11,14 +11,19 @@ router.get("/auth/google", passport.authenticate('google', {
 }))
 
 router.get("/auth/google/callback", passport.authenticate('google'), (req, res)=>{
-    res.redirect("/");
+    if (process.env.ENV == "PROD"){
+        res.redirect("/");
+    }
+    else{
+        res.redirect("http://localhost:8080/");
+    }
 })
 
 router.get("/auth/current_user", (req, res)=>{
     if (req.user)
         res.send(req.user);
     else
-        res.send({id : null});
+        res.send({id : -1});
 })
 
 router.get("/auth/logout", (req, res)=>{

@@ -23,6 +23,9 @@ const store = new Vuex.Store({
         }
     },
     mutations : {
+        setUser(state, user){
+            state.user = user;
+        },
         addToFavorites(state, animeData){
             if (!state.favorites.map(anime=>anime.mal_id).includes(animeData.mal_id))
                 state.favorites.push(animeData);
