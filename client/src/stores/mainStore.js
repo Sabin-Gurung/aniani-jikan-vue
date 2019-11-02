@@ -5,11 +5,21 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state : {
+        user : null,
         favorites : []
     },
     getters : {
         favorites : (state) =>{
             return state.favorites;
+        },
+        isLoggedIn : (state)=>{
+            return state.user != null;
+        },
+        isLoggedOut : (state, getters)=>{
+            return !getters.isLoggedIn;
+        },
+        user : (state)=>{
+            return state.user;
         }
     },
     mutations : {

@@ -2,18 +2,14 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand" to="/home">AniANI-Jikan-VUE</router-link>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <!-- <li class="nav-item">
-        <router-link to="/discover" class="nav-link">Discover</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/favorites" class="nav-link">Favorites</router-link>
-      </li>
+      <a v-if="1 == 1" href="#" class="nav-link">Log In</a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
@@ -26,10 +22,14 @@
         </div>
       </li> -->
     </ul>
-    <div class="form-inline my-2 my-lg-0">
+    <ul class="navbar-nav mr-right">
+    <div class="form-inline my-2 my-lg-0 ml-2 mr-2">
       <input class="form-control mr-sm-2" v-model="queryText" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" @click="onSearch">Search</button>
     </div>
+      <button v-if="$store.getters.isLoggedOut" class="btn btn-sm btn-success ml-2 mr-2" @click="onClickLogIn">Log In</button>
+      <button v-else class="btn btn-sm btn-success ml-2 mr-2" @click="onClickLogOut" >Log Out</button>
+    </ul>
   </div>
 </nav>
 </template>
@@ -51,6 +51,12 @@ export default {
             window.console.log(this.queryText);
             this.searchAnime(this.queryText);
             this.queryText = "";
+        },
+        onClickLogIn(){
+          this.$store.state.user = 1;
+        },
+        onClickLogOut(){
+          this.$store.state.user = null;
         }
     }
 }
