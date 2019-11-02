@@ -9,13 +9,14 @@
             <p>{{anime.title}}</p>
             <p>{{anime.score}}</p>
             <button class="btn btn-success btn-sm" @click="onClick">See More</button><br/>
-            <div v-if="isFavorite" @click="onClickFavorite">
-                Favorite
+            <div v-if="$store.getters.isLoggedIn">
+                <div v-if="isFavorite" @click="onClickFavorite">
+                    Favorite
+                </div>
+                <div v-else @click="onClickFavorite">
+                    Not Favorite
+                </div>
             </div>
-            <div v-else @click="onClickFavorite">
-                Not Favorite
-            </div>
-
         </div>
     </div>
 </div>
