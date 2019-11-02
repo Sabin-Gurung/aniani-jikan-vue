@@ -27,8 +27,10 @@
       <input class="form-control mr-sm-2" v-model="queryText" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" @click="onSearch">Search</button>
     </div>
-      <button v-if="$store.getters.isLoggedOut" class="btn btn-sm btn-success ml-2 mr-2" @click="onClickLogIn">Log In</button>
-      <button v-else class="btn btn-sm btn-success ml-2 mr-2" @click="onClickLogOut" >Log Out</button>
+      <!-- <button v-if="$store.getters.isLoggedOut" class="btn btn-sm btn-success ml-2 mr-2" @click="onClickLogIn">Log In</button>
+      <button v-else class="btn btn-sm btn-success ml-2 mr-2" @click="onClickLogOut" >Log Out</button> -->
+      <a href="/api/auth/google" v-if="$store.getters.isLoggedOut" class="btn btn-sm btn-success ml-2 mr-2">Log In</a>
+      <a href="/api/auth/logout" v-else class="btn btn-sm btn-success ml-2 mr-2">Log Out</a>
     </ul>
   </div>
 </nav>
