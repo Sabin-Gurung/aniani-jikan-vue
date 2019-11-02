@@ -11,14 +11,14 @@ router.get("/auth/google", passport.authenticate('google', {
 }))
 
 router.get("/auth/google/callback", passport.authenticate('google'), (req, res)=>{
-    res.redirect("/api/auth/current_user");
+    res.redirect("/");
 })
 
 router.get("/auth/current_user", (req, res)=>{
     if (req.user)
         res.send(req.user);
     else
-        res.send("hehe");
+        res.send({id : null});
 })
 
 router.get("/auth/logout", (req, res)=>{
