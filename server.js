@@ -19,6 +19,8 @@ app.use(expSession({
     saveUninitialized : true
 }));
 
+require("./backend/src/mongodb").init();
+
 app.use(passport.initialize());
 app.use(passport.session());
 require("./backend/src/googleAuth").init(passport);
