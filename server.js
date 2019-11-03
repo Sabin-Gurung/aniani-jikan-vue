@@ -23,9 +23,9 @@ require("./backend/src/mongodb").init();
 
 app.use(passport.initialize());
 app.use(passport.session());
-require("./backend/src/googleAuth").init(passport);
+require("./backend/src/googleAuth")(passport);
 
-app.use("/api", require("./backend/src/handler"));
+require("./backend/src/handler")(app);
 
 if (process.env.ENV == "PROD"){
     app.use(express.static(path.join(__dirname, 'client/dist')));

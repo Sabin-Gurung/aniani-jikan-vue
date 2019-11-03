@@ -22,4 +22,4 @@ function init(passport) {
     });
 }
 
-module.exports.init = init;
+module.exports = init;
