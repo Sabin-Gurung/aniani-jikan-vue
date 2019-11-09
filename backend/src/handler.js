@@ -1,13 +1,14 @@
 const passport = require("passport");
 const express = require("express");
+const UserDao = require("./dao/user_dao")
 
-module.exports = (app)=>{
+module.exports = (app) => {
     var URL_PREFIX = "/api";
     var router = createRouter();
     app.use(URL_PREFIX, router);
 };
 
-function createRouter(){
+function createRouter() {
     const router = express.Router();
 
     router.get("/hello", (req, res) => {
@@ -41,19 +42,22 @@ function createRouter(){
     })
 
     router.get("/users", (req, res) => {
-        res.json({message: "get list of users not implemented"});
+        UserDao.find()
+            .then(result => res.json({ users: result }));
     })
 
     router.get("/users/:user_id", (req, res) => {
-        res.json({message: `get user ${req.params.user_id} not implemented`});
-    })
-
-    router.put("/users", (req, res) => {
-        res.json({message: "modify users not implemented", body : req.body});
+        UserDao.findOne({ googleid: req.params.user_id })
+            .then(user => {
+                if (user == null){
+                    return res.status(404).json({message : `user ${req.params.user_id} does not exist`})
+                }
+                res.json(user);
+            })
     })
 
     router.get(`/users/:user_id/favorites/add/:fav_id`, (req, res) => {
-        res.json({message: `add one favorites of id ${req.params.fav_id} to user ${req.params.user_id} not implemented`});
+        res.json({ message: `add one favorites of id ${req.params.fav_id} to user ${req.params.user_id} not implemented` });
     })
 
     return router;
