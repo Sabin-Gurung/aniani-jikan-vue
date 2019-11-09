@@ -19,7 +19,7 @@ app.use(expSession({
     saveUninitialized : true
 }));
 
-require("./backend/src/mongodb").init();
+require("./backend/src/mongodb").init(process.env.MONGO_ATLAS_URI);
 
 app.use(passport.initialize());
 app.use(passport.session());

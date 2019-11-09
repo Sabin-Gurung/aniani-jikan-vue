@@ -1,4 +1,5 @@
 const passportGoogleStrategy = require("passport-google-oauth20").Strategy;
+const addNewUser = require("./use_cases/add_new_user")
 
 function init(passport) {
     passport.use(
@@ -9,7 +10,9 @@ function init(passport) {
                 callbackURL: "/api/auth/google/callback"
             },
             (accessToken, refreshToken, profile, done) => {
-                done(null, { id : profile.id});
+                var userBody = {googleid : profile.id, username : profile.displayName};
+                addNewUser.addUser(userBody)
+                .then(res => done(null, {id : res.id}));
             })
     );
 

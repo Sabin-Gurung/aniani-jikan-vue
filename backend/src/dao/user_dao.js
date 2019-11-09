@@ -11,5 +11,5 @@ UserSchema.pre("save", function(done){
     done();
 });
 
-var UserDao = mongoose.model("Novel", novelSchema);
+var UserDao = mongoose.model("users", UserSchema);
 module.exports = UserDao;
