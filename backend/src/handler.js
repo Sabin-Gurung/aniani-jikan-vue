@@ -1,6 +1,7 @@
 const passport = require("passport");
 const express = require("express");
 const UserDao = require("./dao/user_dao")
+const addFavoriteAnime = require("./use_cases/add_favorite_anime").execute;
 
 module.exports = (app) => {
     var URL_PREFIX = "/api";
@@ -56,8 +57,9 @@ function createRouter() {
             })
     })
 
-    router.get(`/users/:user_id/favorites/add/:fav_id`, (req, res) => {
-        res.json({ message: `add one favorites of id ${req.params.fav_id} to user ${req.params.user_id} not implemented` });
+    router.get(`/users/:user_id/like/:anime_id`, (req, res) => {
+        addFavoriteAnime(req.params.user_id, req.params.anime_id)
+        .then(result => res.json(result));
     })
 
     return router;
