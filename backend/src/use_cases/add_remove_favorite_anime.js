@@ -1,5 +1,3 @@
-
-var UserDao = require("../dao/user_dao");
 var getUserByGoogleId = require("./add_new_user").getUserByGoogleId;
 const ani_ex = require("../exceptionHandlers");
 const jikanClient = require("../services/jikanClient");
@@ -12,7 +10,7 @@ async function getAnime(animeId){
     return anime;
 }
 
-async function execute(userId, animeId){
+async function like(userId, animeId){
     await getAnime(animeId);
 
     var user = await getUserByGoogleId(userId);
@@ -20,13 +18,30 @@ async function execute(userId, animeId){
         throw new ani_ex.ResourceNotFoundError(`user ${userId} does not exist`);
     }
 
-    if (user.favorites.indexOf(animeId) >= 0)
+    if (user.favorites.includes(animeId))
         return user;
     user.favorites.push(animeId);
     var user = await user.save();
     return user;
 }
 
+async function unlike(userId, animeId){
+    await getAnime(animeId);
+
+    var user = await getUserByGoogleId(userId);
+    if (user== null){
+        throw new ani_ex.ResourceNotFoundError(`user ${userId} does not exist`);
+    }
+
+    if (!user.favorites.includes(animeId))
+        return user;
+    user.favorites = user.favorites.filter(val => val!=animeId);
+    var user = await user.save();
+    return user;
+}
+
 module.exports = {
-    execute
+    like,
+    unlike,
+    getAnime
 }

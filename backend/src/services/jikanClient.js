@@ -4,12 +4,12 @@ const axios = require("axios").default;
 
 async function getAnime(animeId){
     console.log("in here");
-    var res = await axios.get(`${API_URL}/anime/${animeId}`)
-    if (res.status == 400){
-        return null;
+    try{
+        var res = await axios.get(`${API_URL}/anime/${animeId}`)
+        return await res.data
     }
-    else {
-        return res.data
+    catch(err){
+        return null;
     }
 }
 

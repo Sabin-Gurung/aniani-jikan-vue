@@ -1,7 +1,7 @@
 const passport = require("passport");
 const express = require("express");
-const UserDao = require("./dao/user_dao")
-const addFavoriteAnime = require("./use_cases/add_favorite_anime").execute;
+const UserDao = require("./dao/user_dao");
+const favoriteAnime = require("./use_cases/add_remove_favorite_anime");
 const ani_ex = require("./exceptionHandlers");
 
 module.exports = (app) => {
@@ -63,7 +63,15 @@ function createRouter() {
     })
 
     router.get(`/users/:user_id/like/:anime_id`, (req, res, next) => {
-        addFavoriteAnime(req.params.user_id, req.params.anime_id)
+        favoriteAnime.like(req.params.user_id, req.params.anime_id)
+            .then(result => res.json(result))
+            .catch(err => {
+                next(err);
+            })
+    })
+
+    router.get(`/users/:user_id/unlike/:anime_id`, (req, res, next) => {
+        favoriteAnime.unlike(req.params.user_id, req.params.anime_id)
             .then(result => res.json(result))
             .catch(err => {
                 next(err);
