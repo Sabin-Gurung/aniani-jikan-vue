@@ -2,10 +2,14 @@
 var UserDao = require("../dao/user_dao");
 var getUserByGoogleId = require("./add_new_user").getUserByGoogleId;
 const ani_ex = require("../exceptionHandlers");
+const jikanClient = require("../services/jikanClient");
 
 async function execute(userId, animeId){
     // animeexist
-    if (animeId == -1){
+    console.log("getting anime");
+    var anime = await jikanClient.getAnime(animeId);
+    console.log(anime);
+    if (anime == null){
         throw new ani_ex.ResourceNotFoundError(`anime ${animeId} does not exist`);
     }
 
