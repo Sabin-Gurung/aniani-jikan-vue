@@ -1,5 +1,6 @@
 import Vuex from "vuex";
 import Vue from "vue"
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -26,14 +27,28 @@ const store = new Vuex.Store({
         setUser(state, user){
             state.user = user;
         },
-        addToFavorites(state, animeData){
-            if (!state.favorites.map(anime=>anime.mal_id).includes(animeData.mal_id))
-                state.favorites.push(animeData);
+        initFavorites (state, favorites){
+            state.favorites = favorites;
         },
-        removeFromFavorites(state, animeId){
-            var index = state.favorites.findIndex(anime=>anime.mal_id == animeId);
-            if (index != -1){
-                state.favorites.splice(index, 1)
+        addToFavorites(state, animeData) {
+            if (!state.favorites.map(anime => anime.mal_id).includes(animeData.mal_id)) {
+                axios.get(`/api/users/${state.user.id}/like/${animeData.mal_id}`)
+                    .then(res => res.data)
+                    .then(res => {
+                        window.console.log(res);
+                        state.favorites.push(animeData);
+                    })
+            }
+        },
+        removeFromFavorites(state, animeId) {
+            var index = state.favorites.findIndex(anime => anime.mal_id == animeId);
+            if (index != -1) {
+                axios.get(`/api/users/${state.user.id}/unlike/${animeId}`)
+                    .then(res => res.data)
+                    .then(res => {
+                        window.console.log(res);
+                        state.favorites.splice(index, 1);
+                    })
             }
         }
     }

@@ -50,7 +50,7 @@ function createRouter() {
     })
 
     router.get("/users/:user_id", (req, res, next) => {
-        UserDao.findOne({ googleid: req.params.user_id })
+        UserDao.findById(req.params.user_id)
             .then(user => {
                 if (user == null){
                     throw new ani_ex.ResourceNotFoundError(`user ${req.params.user_id} does not exist`);

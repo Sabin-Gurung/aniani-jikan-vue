@@ -16,16 +16,28 @@ export default {
     navBar : NavBar
   },
   created(){
-    axios.get("/api/auth/current_user")
-    .then(res => res.data)
-    .then(res => {
-      if (res.id != -1){
-        this.$store.commit("setUser", res);
+    var init = async () => {
+      var res = await axios.get("/api/auth/current_user");
+      var userid = (await res.data).id;
+      if (userid == -1)
+        return;
+
+      this.$store.commit("setUser", {id : userid});
+      res = await axios.get(`/api/users/${userid}`);
+      var user = await res.data;
+      window.console.log(user);
+
+      var getAnime = async (animeId) => {
+        var res = await axios.get(`https://api.jikan.moe/v3/anime/${animeId}`);
+        return await res.data;
       }
-    })
-    .catch(err=>{
-      window.console.log(err);
-    });
+      Promise.all(user.favorites.map(getAnime))
+      .then((values)=>{
+        window.console.log(values);
+        this.$store.commit("initFavorites", values);
+      })
+    }
+    init();
   }
 }
 </script>

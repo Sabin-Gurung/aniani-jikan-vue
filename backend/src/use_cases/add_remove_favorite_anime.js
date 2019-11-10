@@ -1,6 +1,6 @@
-var getUserByGoogleId = require("./add_new_user").getUserByGoogleId;
 const ani_ex = require("../exceptionHandlers");
 const jikanClient = require("../services/jikanClient");
+const UserDao = require("../dao/user_dao");
 
 async function getAnime(animeId){
     var anime = await jikanClient.getAnime(animeId);
@@ -13,7 +13,7 @@ async function getAnime(animeId){
 async function like(userId, animeId){
     await getAnime(animeId);
 
-    var user = await getUserByGoogleId(userId);
+    var user = await UserDao.findById(userId);
     if (user== null){
         throw new ani_ex.ResourceNotFoundError(`user ${userId} does not exist`);
     }
@@ -28,7 +28,7 @@ async function like(userId, animeId){
 async function unlike(userId, animeId){
     await getAnime(animeId);
 
-    var user = await getUserByGoogleId(userId);
+    var user = await UserDao.findById(userId);
     if (user== null){
         throw new ani_ex.ResourceNotFoundError(`user ${userId} does not exist`);
     }
