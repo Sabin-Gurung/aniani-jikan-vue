@@ -9,7 +9,7 @@
             <p>{{anime.title}}</p>
             <p>{{anime.score}}</p>
             <button class="btn btn-success btn-sm" @click="onClick">See More</button><br/>
-            <div v-if="$store.getters.isLoggedIn">
+            <div class="d-flex flex-row-reverse" v-if="$store.getters.isLoggedIn">
                 <div v-if="isFavorite" @click="onClickFavorite">
                     <i class="fas fa-heart"></i>
                 </div>
@@ -72,6 +72,11 @@ export default {
     border-left: solid 2px grey;
     padding: 5px;
     margin: 5px;
+}
+
+i {
+    font-size: 30px;
+    color: brown;
 }
 
 </style>
