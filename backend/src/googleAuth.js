@@ -7,7 +7,7 @@ function init(passport) {
             {
                 clientID: process.env.GOOGLE_CLIENT_ID,
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-                callbackURL: "/api/auth/google/callback"
+                callbackURL: process.env.ENV == "PROD" ? "https://anianijikan-vue.herokuapp.com/api/auth/google/callback" : "/api/auth/google/callback"
             },
             (accessToken, refreshToken, profile, done) => {
                 var userBody = {googleid : profile.id, username : profile.displayName};
