@@ -2,11 +2,13 @@ const passport = require("passport");
 const express = require("express");
 const UserDao = require("./dao/user_dao")
 const addFavoriteAnime = require("./use_cases/add_favorite_anime").execute;
+const ani_ex = require("./exceptionHandlers");
 
 module.exports = (app) => {
     var URL_PREFIX = "/api";
     var router = createRouter();
     app.use(URL_PREFIX, router);
+    ani_ex.init(app);
 };
 
 function createRouter() {
@@ -47,19 +49,25 @@ function createRouter() {
             .then(result => res.json({ users: result }));
     })
 
-    router.get("/users/:user_id", (req, res) => {
+    router.get("/users/:user_id", (req, res, next) => {
         UserDao.findOne({ googleid: req.params.user_id })
             .then(user => {
                 if (user == null){
-                    return res.status(404).json({message : `user ${req.params.user_id} does not exist`})
+                    throw new ani_ex.ResourceNotFoundError(`user ${req.params.user_id} does not exist`);
                 }
                 res.json(user);
             })
+            .catch(err=>{
+                next(err);
+            });
     })
 
-    router.get(`/users/:user_id/like/:anime_id`, (req, res) => {
+    router.get(`/users/:user_id/like/:anime_id`, (req, res, next) => {
         addFavoriteAnime(req.params.user_id, req.params.anime_id)
-        .then(result => res.json(result));
+            .then(result => res.json(result))
+            .catch(err => {
+                next(err);
+            })
     })
 
     return router;
